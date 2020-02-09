@@ -132,7 +132,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
             return;
         }
         client.authAccept(nickname);
-        sendToAuthClients(Library.getTypeBroadcast("Server", nickname + " connected"));
+        sendToAuthClients(Library.getTypeBroadcast("Server", nickname));
     }
 
     private void handleAuthMessage(ClientThread client, String msg) {

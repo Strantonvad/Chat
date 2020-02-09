@@ -134,7 +134,26 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                log.append(msg + "\n");
+                String[] arr = msg.split(Library.DELIMITER);
+                String answer;
+                switch (arr[0]) {
+                    case Library.AUTH_ACCEPT:
+                        answer = "Пользователь " + arr[1]  + " успешно авторизовался";
+                        break;
+                    case Library.AUTH_DENIED:
+                        answer = "В авторизации отказано!";
+                        break;
+                    case Library.TYPE_BROADCAST:
+                        answer = arr[3] + " вошел в чат.";
+                        break;
+                    case Library.MSG_FORMAT_ERROR:
+                        answer = "Ошибка форматирования сообщения!";
+                        break;
+                    default:
+                        answer = msg;
+                        break;
+                }
+                log.append(answer + "\n");
                 log.setCaretPosition(log.getDocument().getLength());
             }
         });
